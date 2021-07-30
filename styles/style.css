@@ -1,0 +1,17 @@
+body {
+  background-color: rgb(180, 116, 43);
+}
+
+#wrapper {
+  display: grid;
+
+  grid-template-areas:
+    "header header"
+    "add books";
+}
+
+header {
+  grid-area: header;
+  font-size: 3rem;
+  background-color: cadetblue;
+}
