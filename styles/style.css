@@ -4,14 +4,56 @@ body {
 
 #wrapper {
   display: grid;
-
-  grid-template-areas:
-    "header header"
-    "add books";
 }
 
 header {
-  grid-area: header;
   font-size: 3rem;
   background-color: cadetblue;
+}
+
+#books {
+  height: auto;
+  width: 2rem;
+}
+
+.book {
+  background-color: red;
+  color: rgb(0, 0, 0);
+  padding: 2rem;
+  margin: 2rem;
+  height: auto;
+  width: 5rem;
+}
+
+.addBook {
+  height: auto;
+  width: 5rem;
+  margin: 1rem;
+}
+
+#form-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 0.2rem solid black;
+  border-radius: 2rem;
+  padding: 2rem;
+  background-color: white;
+  z-index: 10;
+}
+.form {
+  height: auto;
+  width: 20rem;
+}
+
+#form-title {
+  display: grid;
+  justify-items: center;
+  font-size: 25px;
+}
+
+#book-button {
+  cursor: pointer;
 }
