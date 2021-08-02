@@ -7,32 +7,58 @@
     <title>Library</title>
     <script src="script/script.js" defer></script>
     <link rel="stylesheet" href="styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="wrapper">
       <div id="top">
-        <header>Library</header>
+        <header>My Library</header>
         <button
           onclick="toggleForm()"
           id="book-button"
           type="button"
           class="addBook"
         >
-          Add Book
+          +
         </button>
       </div>
       <div id="form-popup">
         <div id="form-title">Add A New Book</div>
-        <br />
+
         <form class="form">
-          <label for="title">Enter Title:</label>
-          <input type="text" name="title" id="title" required /><br /><br />
-          <label for="author">Enter Author:</label>
-          <input type="text" name="author" id="author" required /><br /><br />
-          <label for="pages">Number of Pages:</label>
-          <input type="number" name="pages" id="pages" required /><br /><br />
-          <label for="read">Read?</label>
-          <input type="checkbox" name="read" id="read" /><br /><br />
+          <input
+            placeholder="Enter Title"
+            type="text"
+            name="title"
+            id="title"
+            class="input"
+            required
+          />
+          <input
+            placeholder="Enter Author"
+            type="text"
+            name="author"
+            id="author"
+            class="input"
+            required
+          />
+          <input
+            class="input"
+            placeholder="Enter Pages"
+            type="number"
+            name="pages"
+            id="pages"
+            required
+          />
+          <div class="read-box">
+            <label class="read-text" for="read">Read?</label>
+            <input type="checkbox" name="read" id="read" /><br /><br />
+          </div>
           <input id="submit" type="submit" value="Add Book" />
         </form>
       </div>
