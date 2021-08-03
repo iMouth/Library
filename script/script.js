@@ -53,6 +53,12 @@ function displayBooks() {
   const book = document.createElement("div");
   book.classList.add("book");
   books.appendChild(book);
+  cancel = document.createElement("button");
+  cancel.type = "button";
+  cancel.textContent = "X";
+  cancel.setAttribute("id", "cancel-button");
+  book.appendChild(cancel);
+
   bookInfo(book, "title");
   bookInfo(book, "author");
   bookInfo(book, "pages");
