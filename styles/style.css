@@ -10,11 +10,11 @@ body {
 
 header {
   margin-left: auto;
-  padding-left: 5rem;
-  font-size: 6rem;
+  padding-left: 8.5rem;
+  font-size: 7rem;
   color: rgb(227, 38, 54);
   font-family: "Amatic SC", cursive;
-  -webkit-text-stroke: 1px black;
+  -webkit-text-stroke: 2px black;
 }
 
 #book-button {
@@ -36,7 +36,7 @@ header {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 0.2rem solid black;
+  border: 0.5rem solid black;
   border-radius: 4rem;
   padding: 1.5rem;
   background-color: rgb(228, 77, 46);
@@ -66,6 +66,7 @@ header {
 .read-box {
   display: flex;
   justify-content: center;
+  margin: 1rem auto;
 }
 
 .read-text {
@@ -74,14 +75,60 @@ header {
 
 #books {
   display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 1rem;
   margin-top: 4rem;
   margin-left: 2rem;
+  text-align: center;
 }
 
 .book {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: rgb(248, 131, 121);
   width: 15rem;
-  height: 15rem;
+  height: auto;
   border-radius: 2rem;
   border: 0.5rem solid black;
+  padding: 2em;
+  font-family: "Amatic SC", cursive;
+}
+
+.title {
+  font-size: 3rem;
+  margin: 1rem auto;
+  padding-bottom: 1rem;
+  border-bottom: 0.5rem solid black;
+}
+
+.author {
+  font-size: 2.3rem;
+  margin: 1rem auto;
+}
+
+.pages {
+  font-size: 2rem;
+  margin: 1rem auto;
+}
+
+.read {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 1rem;
+}
+
+#read-button {
+  margin-left: auto;
+  width: 2.5rem;
+  border-radius: 2rem;
+  background-color: rgb(227, 38, 54);
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+#read-button:active {
+  background-color: rgb(133, 5, 5);
 }
