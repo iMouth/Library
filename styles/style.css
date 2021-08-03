@@ -66,10 +66,13 @@ header {
 .read-box {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 1rem auto;
+  margin-bottom: 2rem;
 }
 
 .read-text {
+  font-size: 1.2rem;
   padding-right: 1rem;
 }
 
@@ -123,15 +126,11 @@ header {
 
 #read-button {
   margin-left: auto;
+  background-color: rgb(227, 38, 54);
   width: 2.5rem;
   border-radius: 2rem;
-  background-color: rgb(227, 38, 54);
   border: 2px solid black;
   cursor: pointer;
-}
-
-#read-button:active {
-  background-color: rgb(133, 5, 5);
 }
 
 #cancel-button {

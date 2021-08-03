@@ -1,18 +1,7 @@
 let myLibrary = [];
 
-const books = document.getElementById("books");
 const form = document.getElementById("form");
-const read = document.getElementById("read-button");
-
 form.addEventListener("submit", addBookToLibrary);
-
-setBook();
-
-function setBook() {
-  const book1 = new Book("John F Kennedy", "Steven Speilsberg", 250, "Read");
-  myLibrary.push(book1);
-  displayBooks();
-}
 
 function toggleForm() {
   let form = document.getElementById("form-popup");
@@ -36,27 +25,31 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary(e) {
-  console.log(e);
   e.preventDefault();
   let title = document.getElementById("title").value;
   let author = document.getElementById("author").value;
   let pages = document.getElementById("pages").value;
   let read = document.getElementById("read").checked;
-  read = read ? "Read" : "Not Read";
+  read = read ? "Read" : "Unread";
   const testBook = new Book(title, author, pages, read);
   myLibrary.push(testBook);
   toggleForm();
   displayBooks();
+  form.reset();
 }
 
 function displayBooks() {
   const book = document.createElement("div");
   book.classList.add("book");
+  book.classList.add("bookNumber" + myLibrary.length);
   books.appendChild(book);
+
   cancel = document.createElement("button");
   cancel.type = "button";
   cancel.textContent = "X";
+  cancel.classList.add("bookNumber" + myLibrary.length);
   cancel.setAttribute("id", "cancel-button");
+  cancel.addEventListener("click", removeBook);
   book.appendChild(cancel);
 
   bookInfo(book, "title");
@@ -83,6 +76,11 @@ function bookInfo(book, bookElement) {
     readButton.setAttribute("id", "read-button");
     readButton.classList.add("book" + myLibrary.length);
     readButton.addEventListener("click", changeStatus);
+    readButton.style.backgroundColor =
+      myLibrary[myLibrary.length - 1].read() === "Read"
+        ? "yellowgreen"
+        : "rgb(227, 38, 54)";
+
     info.appendChild(readButton);
   }
   info.classList.add(bookElement);
@@ -91,17 +89,23 @@ function bookInfo(book, bookElement) {
 
 function changeStatus(e) {
   const readStatus = document.getElementById(e.toElement.className);
-  if (readStatus.textContent === "Status: Read") {
-    readStatus.textContent = "Status: Unread";
-  } else {
-    readStatus.textContent = "Status: Read";
-  }
+  readStatus.textContent =
+    readStatus.textContent === "Status: Read"
+      ? "Status: Unread"
+      : "Status: Read";
+  setColor(e);
 }
 
-function validateForm() {
-  let x = document.forms["myForm"]["fname"].value;
-  if (x == "") {
-    alert("Name must be filled out");
-    return false;
-  }
+function removeBook(e) {
+  const book = document.getElementsByClassName(e.toElement.className);
+  book.item(0).remove();
+}
+
+function setColor(e) {
+  let target = e.target;
+
+  target.style.backgroundColor =
+    target.style.backgroundColor === "yellowgreen"
+      ? "rgb(227, 38, 54)"
+      : "yellowgreen";
 }
