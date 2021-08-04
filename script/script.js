@@ -88,7 +88,7 @@ function bookInfo(book, bookElement) {
 }
 
 function changeStatus(e) {
-  const readStatus = document.getElementById(e.toElement.className);
+  const readStatus = document.getElementById(e.target.className);
   readStatus.textContent =
     readStatus.textContent === "Status: Read"
       ? "Status: Unread"
