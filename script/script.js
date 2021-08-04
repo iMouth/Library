@@ -3,15 +3,6 @@ let myLibrary = [];
 const form = document.getElementById("form");
 form.addEventListener("submit", addBookToLibrary);
 
-function toggleForm() {
-  let form = document.getElementById("form-popup");
-  if (form.style.display === "block") {
-    form.style.display = "none";
-  } else {
-    form.style.display = "block";
-  }
-}
-
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
@@ -38,12 +29,28 @@ function addBookToLibrary(e) {
   form.reset();
 }
 
+function toggleForm() {
+  let form = document.getElementById("form-popup");
+  if (form.style.display === "block") {
+    form.style.display = "none";
+  } else {
+    form.style.display = "block";
+  }
+}
+
 function displayBooks() {
   const book = document.createElement("div");
   book.classList.add("book");
   book.classList.add("bookNumber" + myLibrary.length);
   books.appendChild(book);
+  cancelBtn(book);
+  bookInfo(book, "title");
+  bookInfo(book, "author");
+  bookInfo(book, "pages");
+  readBox(book);
+}
 
+function cancelBtn(book) {
   cancel = document.createElement("button");
   cancel.type = "button";
   cancel.textContent = "X";
@@ -51,11 +58,6 @@ function displayBooks() {
   cancel.setAttribute("id", "cancel-button");
   cancel.addEventListener("click", removeBook);
   book.appendChild(cancel);
-
-  bookInfo(book, "title");
-  bookInfo(book, "author");
-  bookInfo(book, "pages");
-  bookInfo(book, "read");
 }
 
 function bookInfo(book, bookElement) {
@@ -66,25 +68,37 @@ function bookInfo(book, bookElement) {
     info.textContent = "By: " + myLibrary[myLibrary.length - 1].author();
   } else if (bookElement === "pages") {
     info.textContent = "Pages: " + myLibrary[myLibrary.length - 1].pages();
-  } else if (bookElement === "read") {
-    const readText = document.createElement("div");
-    readText.textContent = "Status: " + myLibrary[myLibrary.length - 1].read();
-    readText.setAttribute("id", "book" + myLibrary.length);
-    info.appendChild(readText);
-    const readButton = document.createElement("button");
-    readButton.type = "button";
-    readButton.setAttribute("id", "read-button");
-    readButton.classList.add("book" + myLibrary.length);
-    readButton.addEventListener("click", changeStatus);
-    readButton.style.backgroundColor =
-      myLibrary[myLibrary.length - 1].read() === "Read"
-        ? "yellowgreen"
-        : "rgb(227, 38, 54)";
-
-    info.appendChild(readButton);
   }
   info.classList.add(bookElement);
   book.appendChild(info);
+}
+
+function readBox(book) {
+  const info = document.createElement("div");
+  info.classList.add("read");
+
+  const readText = document.createElement("div");
+  readText.textContent = "Status: " + myLibrary[myLibrary.length - 1].read();
+  readText.setAttribute("id", "book" + myLibrary.length);
+  info.appendChild(readText);
+
+  const readButton = document.createElement("button");
+  readButton.type = "button";
+  readButton.setAttribute("id", "read-button");
+  readButton.classList.add("book" + myLibrary.length);
+  readButton.addEventListener("click", changeStatus);
+  readButton.style.backgroundColor =
+    myLibrary[myLibrary.length - 1].read() === "Read"
+      ? "yellowgreen"
+      : "rgb(227, 38, 54)";
+
+  info.appendChild(readButton);
+  book.appendChild(info);
+}
+
+function removeBook(e) {
+  const book = document.getElementsByClassName(e.target.className);
+  book.item(0).remove();
 }
 
 function changeStatus(e) {
@@ -94,11 +108,6 @@ function changeStatus(e) {
       ? "Status: Unread"
       : "Status: Read";
   setColor(e);
-}
-
-function removeBook(e) {
-  const book = document.getElementsByClassName(e.toElement.className);
-  book.item(0).remove();
 }
 
 function setColor(e) {
